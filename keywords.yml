@@ -1,0 +1,47 @@
+# 収集ステージでのフィルタ語彙
+# title / abstract / description のいずれかにマッチしないと候補に入らない
+
+include_keywords:
+  # 量子化本体
+  - quantiz
+  - low-bit
+  - low bit
+  - INT4
+  - INT8
+  - FP8
+  - FP6
+  - FP4
+  - NF4
+  - NVFP4
+  - MXFP
+  - 4-bit
+  - 8-bit
+  - 1-bit
+  - 1.58
+  - 2-bit
+  # 圧縮
+  - compress
+  # KV cache
+  - KV cache
+  - KV-cache
+  # 推論性能
+  - inference speed
+  - inference throughput
+  - inference latency
+  - throughput
+  # メモリ
+  - memory effic
+  - VRAM
+  - GPU memory
+  - memory footprint
+  # 関連技術
+  - microscaling
+  - rotation
+  - Hadamard
+  - outlier
+  - calibration-free
+  - paged
+
+exclude_keywords:
+  - quantum         # 量子コンピューティング除外(最重要)
+  - chemistry       # 量子化学除外

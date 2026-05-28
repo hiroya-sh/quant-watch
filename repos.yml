@@ -1,0 +1,33 @@
+# GitHub releases 監視対象
+# 各repoの releases.atom を見て、time window 内の新規releaseを拾う
+
+repos:
+  # 推論エンジン
+  - vllm-project/vllm
+  - NVIDIA/TensorRT-LLM
+  - ggml-org/llama.cpp
+  - ml-explore/mlx
+  - sgl-project/sglang
+  - huggingface/text-generation-inference
+  - InternLM/lmdeploy
+
+  # 量子化ライブラリ
+  - AutoGPTQ/AutoGPTQ
+  - casper-hansen/AutoAWQ
+  - intel/auto-round
+  - vllm-project/llm-compressor
+  - neuralmagic/compressed-tensors
+  - bitsandbytes-foundation/bitsandbytes
+  - huggingface/optimum-quanto
+  - ModelCloud/GPTQModel
+  - IST-DASLab/marlin
+  - NVIDIA/TensorRT-Model-Optimizer
+
+  # KV cache
+  - SqueezeAILab/KVQuant
+
+  # 進行プロジェクト周辺(GLA / Mamba / Nemotron 系)
+  - fla-org/flash-linear-attention
+  - state-spaces/mamba
+  - Dao-AILab/causal-conv1d
+  - NVIDIA/Megatron-LM

@@ -1,0 +1,8 @@
+.DS_Store
+.trash/
+.obsidian/workspace*
+.obsidian/cache
+.obsidian/workspaces.json
+.tmp/
+.vscode/
+*.swp

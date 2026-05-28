@@ -1,0 +1,136 @@
+# 量子化ウォッチ用タグ辞書
+# - 表記揺れを防ぐためのcanonical形式
+# - Routine はこの辞書のいずれかに該当するタグでアイテムを分類
+# - 既存にないタグが出現したら、weekly末尾の「新規タグ候補」に列挙される → 手動でここに追加
+
+# モデル: HF形式 (org/name)
+# Routine は substring match で適用(例: "google/gemma-4" は "google/gemma-4-26b-a4b" にもヒット)
+models:
+  # Meta
+  - meta-llama/Llama-3.1
+  - meta-llama/Llama-3.2
+  - meta-llama/Llama-3.3
+  - meta-llama/Llama-4-Scout
+  - meta-llama/Llama-4
+  # Google
+  - google/gemma-3
+  - google/gemma-4
+  # Alibaba
+  - Qwen/Qwen2.5
+  - Qwen/Qwen3
+  - Qwen/Qwen3.5
+  - Qwen/Qwen3.6
+  # DeepSeek
+  - deepseek-ai/DeepSeek-V3
+  - deepseek-ai/DeepSeek-V4
+  - deepseek-ai/DeepSeek-R1
+  # Moonshot
+  - moonshotai/Kimi-K2.5
+  - moonshotai/Kimi-K2.6
+  # Zhipu
+  - zai-org/GLM-5.1
+  # Mistral
+  - mistralai/Mistral
+  - mistralai/Mixtral
+  - mistralai/Mistral-Medium-3.5
+  - mistralai/Devstral
+  # Microsoft
+  - microsoft/Phi-4
+  - microsoft/Phi-4-mini
+  # NVIDIA
+  - nvidia/Nemotron-Cascade-2
+  - nvidia/Nemotron
+  # MiniMax
+  - MiniMaxAI/MiniMax-M2.7
+
+# アーキテクチャ: lowercase
+# 1つのモデルが複数該当することあり(例: Nemotron-H = hybrid + mamba + transformer)
+architectures:
+  - transformer
+  - mamba
+  - mamba2
+  - state-space-model
+  - linear-attention
+  - gla              # Gated Linear Attention
+  - rwkv
+  - hybrid           # Mamba+Transformer等
+  - moe              # アーキテクチャとしてのMoE
+  - dense
+
+# 量子化手法: 大文字優先
+methods:
+  # 古典PTQ
+  - GPTQ
+  - AWQ
+  - SmoothQuant
+  - QuIP
+  - OmniQuant
+  - LLM.int8
+  - bitsandbytes
+  # Rotationベース
+  - SpinQuant
+  - QuaRot
+  - FPTQuant
+  # ハッシュ/直交変換
+  - HQQ
+  - QJL
+  - PolarQuant
+  - TurboQuant
+  # FP低ビット
+  - LLM-FP4
+  - NVFP4            # NVIDIA Blackwell native FP4
+  - MXFP4
+  - MXFP6
+  - NF4
+  # ビット割当
+  - AutoRound
+  - BAQ
+  - MoQAE
+  # KV量子化系
+  - KVQuant
+  - QAQ
+  # フォーマット
+  - GGUF
+  - EXL2
+  - EXL3
+
+# 技術要素: kebab-case
+tech:
+  # 量子化対象
+  - weight-only
+  - activation-quant
+  - kv-cache-quant
+  - full-quant
+  # ビット深度
+  - low-bit-fp8
+  - low-bit-fp6
+  - low-bit-fp4
+  - low-bit-4
+  - low-bit-3
+  - low-bit-2
+  - low-bit-1bit
+  - mixed-precision
+  # 手法カテゴリ
+  - ptq
+  - qat
+  - calibration
+  - calibration-free
+  - rotation
+  - polar-rotation
+  - qjl-correction
+  - outlier-handling
+  - block-wise
+  - per-channel
+  - per-token
+  - microscaling-formats
+  # 構造特化
+  - moe-quant
+  - long-context-quant
+  - pre-rope-quant
+  # 関連技術(量子化外だが文脈で出る)
+  - speculative-decoding
+  - paged-attention
+  - kv-cache-eviction
+  - kv-cache-compression-non-quant
+  - latent-compaction
+  - reasoning-aware-compression

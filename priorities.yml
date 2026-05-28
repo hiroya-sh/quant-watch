@@ -1,0 +1,24 @@
+# Hiroyaの注目トピック
+# - focus にマッチしたアイテムは default 判定より +1 段階上に priority bump
+#   (例: default=normal なら high に / default=watching なら normal に)
+# - deprioritize にマッチしたアイテムは -1 段階下げる
+# - matching: models は substring match、それ以外は exact match
+# - 関心の変化に応じて随時編集
+
+focus:
+  architectures: []   # mamba / gla 系は意図的に外している(視野を狭めないため)
+
+  tech:
+    - moe-quant
+    - kv-cache-quant
+
+  methods:
+    - TurboQuant
+    - PolarQuant
+    - QJL
+    - NVFP4
+
+  models:
+    - google/gemma-4
+
+deprioritize: []
