@@ -80,6 +80,16 @@ Filtering:
 
 「先週比」のために `weekly/` 直前週のファイルを読み込んで件数を比較。
 
+### Item リンク記法
+
+weekly summary 内で個別アイテムに言及する時は、Obsidian wikilink記法 `[[items/{filename without .md}|表示テキスト]]` を必ず使用すること。以下のすべての箇所に適用:
+- 議題候補の各アイテム名
+- 概況セクションで具体的アイテム名が出る時
+- カテゴリ別新着の各リスト項目
+- Overflowセクションの各タイトル
+
+例: `[[items/2026-W22-001-paper-octopus|OCTOPUS]] が TurboQuant を上回ると主張`
+
 ### state 更新
 
 `state/seen.json` に今回処理したアイテムIDを追加。
