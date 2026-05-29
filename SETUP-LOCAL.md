@@ -1,5 +1,7 @@
 # Local Setup — quant-watch (launchd)
 
+**対応OS: macOS のみ** (launchd / pmset wake を使用するため)
+
 Anthropicクラウド経由のRoutineが組織ポリシーで使えないので、ローカルlaunchdで実行する構成。
 
 ## 配置
@@ -26,25 +28,25 @@ git push
 
 ```bash
 # パスを実際の場所に置換
-sed -i '' "s|/ABSOLUTE/PATH/TO/quant-watch|/Users/hiroya/Documents/quant-watch|g" \
-    com.hiroya.quant-watch.plist
+sed -i '' "s|/ABSOLUTE/PATH/TO/quant-watch|$HOME/path/to/quant-watch|g" \
+    com.quant-watch.plist
 
 # LaunchAgents に配置
-mv com.hiroya.quant-watch.plist ~/Library/LaunchAgents/
+mv com.quant-watch.plist ~/Library/LaunchAgents/
 
 # 配置確認
-cat ~/Library/LaunchAgents/com.hiroya.quant-watch.plist | grep run.sh
+cat ~/Library/LaunchAgents/com.quant-watch.plist | grep run.sh
 # 正しい絶対パスが入っていることを確認
 ```
 
 ### 3. launchd にロード
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl load ~/Library/LaunchAgents/com.quant-watch.plist
 
 # 確認
 launchctl list | grep quant-watch
-# com.hiroya.quant-watch が表示されればOK
+# com.quant-watch が表示されればOK
 ```
 
 ### 4. pmset wake を設定
@@ -75,7 +77,7 @@ pmset -g sched
 スケジュール時刻に頼らず手動でジョブを発火:
 
 ```bash
-launchctl start com.hiroya.quant-watch
+launchctl start com.quant-watch
 
 # ログ確認
 tail -f /tmp/quant-watch.launchd.stdout.log
@@ -93,8 +95,8 @@ tail -f ~/path/to/quant-watch/.logs/$(ls -t ~/path/to/quant-watch/.logs/ | head 
 
 ```bash
 # 一度unloadしてから再load
-launchctl unload ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
-launchctl load ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl unload ~/Library/LaunchAgents/com.quant-watch.plist
+launchctl load ~/Library/LaunchAgents/com.quant-watch.plist
 ```
 
 ### スクリプトが claude を見つけられない
@@ -116,8 +118,8 @@ export PATH="/path/to/claude/binary:$PATH"
 plistを編集した場合は unload → load が必要:
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
-launchctl load ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl unload ~/Library/LaunchAgents/com.quant-watch.plist
+launchctl load ~/Library/LaunchAgents/com.quant-watch.plist
 ```
 
 ## 停止/削除
@@ -125,13 +127,13 @@ launchctl load ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
 一時停止:
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl unload ~/Library/LaunchAgents/com.quant-watch.plist
 ```
 
 完全削除:
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
-rm ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl unload ~/Library/LaunchAgents/com.quant-watch.plist
+rm ~/Library/LaunchAgents/com.quant-watch.plist
 sudo pmset repeat cancel
 ```

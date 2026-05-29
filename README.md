@@ -1,6 +1,8 @@
 # quant-watch
 
-LLM量子化技術の週次ウォッチ。月曜朝に Claude が前週の論文・実装・モデル情報を収集して PR を投げる。Hiroya がレビューして merge すると Obsidian vault に反映される。
+LLM量子化技術の週次ウォッチ。月曜朝に Claude が前週の論文・実装・モデル情報を収集して PR を投げる。管理者がレビューして merge すると Obsidian vault に反映される。
+
+**動作環境**: macOS (自動収集は launchd + pmset wake を使用するため Mac 限定)
 
 ## 週次ワークフロー
 
@@ -11,7 +13,7 @@ LLM量子化技術の週次ウォッチ。月曜朝に Claude が前週の論文
               ↓ items/ と weekly/ に日本語サマリ md を生成
               ↓ claude/week-{ISO週} ブランチに commit
               ↓ main 向け PR を open
-月曜中      Hiroya が GitHub で PR 内容を確認 → Merge pull request を押す
+月曜中      管理者 が GitHub で PR 内容を確認 → Merge pull request を押す
               ↓ Obsidian Git が main を auto-pull (60分間隔)
               ↓ vault 更新完了 → 火曜定例の議題判断
 ```
@@ -22,7 +24,7 @@ LLM量子化技術の週次ウォッチ。月曜朝に Claude が前週の論文
 quant-watch/
 ├── items/              # 週次生成アイテム詳細 (1アイテム1md)
 ├── weekly/             # 週次サマリ
-├── my-notes/           # Hiroya専用メモ
+├── my-notes/           # 管理者専用メモ
 │   ├── decisions.md    # 設定変更の理由記録
 │   ├── trends.md       # 長期トレンドメモ
 │   └── cowork-prompts.md  # セッション開始テンプレ
@@ -37,16 +39,16 @@ quant-watch/
 ├── templates/          # アイテム・週次サマリのテンプレ
 ├── routine-prompt.md   # Claude への収集・要約指示書
 ├── HANDOFF.md          # Coworkセッション引き継ぎ資料
-├── SETUP-LOCAL.md      # Hiroya の自動実行環境セットアップ
+├── SETUP-LOCAL.md      # 管理者 の自動実行環境セットアップ
 └── SETUP-MEMBER.md     # チームメンバー向けセットアップ
 ```
 
 ## セットアップ
 
-- **自動収集環境を作る (Hiroya のみ)** → [SETUP-LOCAL.md](SETUP-LOCAL.md)
+- **自動収集環境を作る (管理者 のみ)** → [SETUP-LOCAL.md](SETUP-LOCAL.md)
 - **閲覧・議論参加のみ (チームメンバー)** → [SETUP-MEMBER.md](SETUP-MEMBER.md)
 
-## カスタマイズ (Hiroya 向け)
+## カスタマイズ (管理者 向け)
 
 設定変更は main へ直 push でOK。Routine は次回起動時に最新を読む。
 変更理由は `my-notes/decisions.md` に記録する。
