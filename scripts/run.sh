@@ -56,7 +56,7 @@ git checkout main
 git pull --ff-only origin main
 
 echo "Starting Claude run..."
-claude -p "$(cat routine-prompt.md)" \
+caffeinate -is claude -p "$(cat routine-prompt.md)" \
     --dangerously-skip-permissions \
     --output-format text \
     --max-turns 200
