@@ -56,9 +56,6 @@ git checkout main
 git pull --ff-only origin main
 
 echo "Starting Claude run..."
-caffeinate -is claude -p "$(cat routine-prompt.md)" \
-    --dangerously-skip-permissions \
-    --output-format text \
-    --max-turns 200
+caffeinate -is claude -p "$(cat routine-prompt.md)" --dangerously-skip-permissions --output-format text --max-turns 200
 
 echo "=== quant-watch run completed at $(date) ==="
