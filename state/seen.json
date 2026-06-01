@@ -50,7 +50,11 @@
     "2605.29128",
     "2605.27646",
     "2605.26266",
-    "2605.29639"
+    "2605.29639",
+    "2605.31105",
+    "2605.27808",
+    "2605.30728",
+    "2605.26678"
   ],
   "github_releases": [
     "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc15",
@@ -120,7 +124,8 @@
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9439",
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9441",
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9442",
-    "https://github.com/ggml-org/llama.cpp/releases/tag/b9444"
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9444",
+    "https://github.com/neuralmagic/compressed-tensors/releases/tag/0.16.0"
   ],
   "hf_models": [
     "canada-quant/DeepSeek-V4-Flash-NVFP4-FP8-MTP",
@@ -143,7 +148,11 @@
     "philbert440/Qwen3.6-40B-DeckardUncensored-OpusDistilled-HermesCalibrated-W4A16-AWQ",
     "baseten-david-oy/qwen36-35b-a3b-fp8-textonly",
     "aldi2512/Qwen3.6-35B-A3B-Indonesia-Uncensored-FP8-Dynamic",
-    "nvidia/Qwen3.6-35B-A3B-NVFP4"
+    "nvidia/Qwen3.6-35B-A3B-NVFP4",
+    "NeuralNet-Hub/gemma-4-31B-it-abliterated-uncensored-NVFP4",
+    "YihongJin/Qwen3-Omni-30B-A3B-Instruct-NVFP4-W4A4-full-thinker-awqclip",
+    "sakamakismile/LFM2.5-8B-A1B-NVFP4",
+    "shawnw3i/Qwen3.6-27B-AWQ-MTP"
   ],
   "_meta": {
     "last_run": "2026-06-01",
