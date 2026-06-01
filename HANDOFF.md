@@ -10,7 +10,10 @@ Coworkに新しいセッションで合流する時は、Hiroyaさんから「`H
 
 LLM量子化技術の週次ウォッチ。**月曜朝に自動でarXiv/GitHub/HFを巡回 → 日本語サマリ + 議題候補 + 週次レポートを生成 → GitHubにPRを投げる**仕組み。HiroyaさんがPRをレビュー・mergeすると、Obsidian vault(=このリポジトリ)に内容が反映される。
 
-**運用上の前提**: HiroyaさんはClaude Codeのリモート機能(Routines)が組織ポリシーで無効化されているため、Anthropicクラウドではなく **ローカルlaunchd経由で `claude` CLIを叩く** 構成になっている。
+**ワークスペースの場所**: `~/quant-watch`(`/Users/hiroya/quant-watch`)。
+> ⚠️ 2026-06-01 に `~/Documents/quant-watch` から **移動**した。理由は macOS の TCC(プライバシー保護)で、`~/Documents` 配下だと launchd 自動実行が `Operation not permitted` で失敗するため。`~` 直下の非保護フォルダに置くことで解決。**`~/Documents/quant-watch` は空。今後は必ず `~/quant-watch` を使う。**(Cowork プロジェクトも `~/quant-watch` を選んだ新規セッションで開くこと。最初に選んだフォルダは差し替えできない仕様のため、旧フォルダを選んだ古いプロジェクトは閉じる。)
+
+**運用上の前提**: HiroyaさんはClaude Codeのリモート機能(Routines)が組織ポリシーで無効化されているため、Anthropicクラウドではなく **ローカルlaunchd経由で `claude` CLIを叩く** 構成になっている。2026-06-01 に改めてクラウド Routine を試したが「今すぐ実行」が即失敗(ディスパッチ拒否)し、ローカル一本で確定済み。
 
 ## 2. 自動実行の仕組み
 
@@ -24,16 +27,21 @@ LLM量子化技術の週次ウォッチ。**月曜朝に自動でarXiv/GitHub/HF
   → claude/week-{ISO_WEEK} ブランチ作成
   → items/, weekly/, state/seen.json を更新
   → main 向けにPR open
-月曜 10:00頃 (Hiroya): PRをレビュー → merge
-  → Obsidian Gitが auto-pull (60分間隔)
-  → vault更新完了 → 火曜定例の議題判断
+  → run.sh が実行後ローカルを week ブランチへ自動 checkout (2026-06-01追加)
+月曜 朝〜 (Hiroya): Obsidian で week ブランチの内容をそのままレビュー
+  → bash scripts/merge-week.sh 一発: ローカルでmainにマージ→push→main復帰
+  → GitHub PR は main 取り込みで自動 Merged → 火曜定例の議題判断
 ```
 
+レビュー導線(2026-06-01 整備): 手動の `checkout`/`pull` は不要。run.sh が実行後に自動で週ブランチへ切り替えるので、Obsidian を開けば最新内容が出ている。承認は GitHub の Web を開かず `scripts/merge-week.sh` で完結する。
+
 主要設定ファイル:
-- `~/Library/LaunchAgents/com.hiroya.quant-watch.plist` - launchd設定
+- `~/Library/LaunchAgents/com.hiroya.quant-watch.plist` - launchd設定(ProgramArguments は `/bin/bash ~/bin/quant-watch-launch.sh` → `exec ~/quant-watch/scripts/run.sh`)
 - `pmset repeat wake M 07:55:00` - スリープ自動起床
 
 スリープ抑止は `caffeinate -is` で実行中のみ有効、claudeプロセス終了で自動解除。
+
+> ⚠️ `pmset wake` は **スリープからの復帰**であって、**電源OFFからの起動ではない**(特に Apple Silicon は非対応)。日曜夜は電源を切らず **スリープ + 電源アダプタ接続**にしておくこと。バッテリ駆動だと wake しない設定がデフォルト。
 
 ## 3. ファイル構成と編集ルール
 
@@ -57,7 +65,8 @@ LLM量子化技術の週次ウォッチ。**月曜朝に自動でarXiv/GitHub/HF
 | `state/repos.yml` | GitHub releases 監視対象 | プロジェクト変更で追加/削除 |
 | `state/priorities.yml` | Hiroyaの注目トピック | 関心が変わったら随時 |
 | `routine-prompt.md` | 週次実行の指示書 | 要約粒度/構成の改善時 |
-| `scripts/run.sh` | 実行スクリプト | 環境変更時 |
+| `scripts/run.sh` | 実行スクリプト(末尾で週ブランチへ自動 checkout) | 環境変更時 |
+| `scripts/merge-week.sh` | 週ブランチをローカルで main にマージ&push する承認スクリプト | 通常は触らない |
 | `templates/*.md` | アイテム/週次のテンプレート | 出力形式変更時 |
 | `views/*.md` | Dataviewクエリページ | 検索性向上時 |
 
@@ -106,12 +115,19 @@ items/ の中身を見て、Hiroyaのメモを `my-notes/` に書く + items/ �
 ### F. weekly summary の補正
 PRをmergeする前に「議題候補のここをもう少し詳しく」みたいな依頼。weekly/{week}.md を編集 → commit + 同じPRブランチにpush。
 
+### G. 週次PRの承認(マージ)
+レビューが終わったら GitHub の Web を開かず、ローカルで一発マージ:
+```bash
+bash ~/quant-watch/scripts/merge-week.sh
+```
+対象の週ブランチを判定 → main にマージ → push → 週ブランチ削除 → main に戻る。GitHub の PR は自動 Merged 扱いになる。未コミットの変更があると中断するので、F のような手編集をした場合は先に commit/push しておく。
+
 ## 6. 編集後の必須手順
 
 **すべての編集後にgit commit + pushが必要**。これを忘れると次回月曜routineに反映されない。
 
 ```bash
-cd ~/Documents/quant-watch
+cd ~/quant-watch
 git add .
 git status   # 変更確認
 git commit -m "変更内容を簡潔に"
@@ -126,6 +142,10 @@ Coworkで作業する場合は、ファイル編集後にこのコマンドを�
 2. **組織ポリシーでRemote Control 無効化が判明** → 設計変更
 3. **ローカル launchd + pmset wake + caffeinate** に切り替え
 4. **Cowork は使えるので、対話的な編集はCoworkで実施**することに(この資料の対象)
+5. **2026-06-01**: launchd 自動実行が `Operation not permitted` で失敗 → 原因は `~/Documents` の TCC 保護 → repo を `~/quant-watch` へ移動して解決(ラッパー `~/bin/quant-watch-launch.sh` 経由で起動)
+6. **2026-06-01**: 設定ファイル(`taxonomy.yml` 等)を root から `state/` へ移動(routine-prompt/README の参照と一致させるため)
+7. **2026-06-01**: クラウド Routine を再試行 → 即失敗(ディスパッチ拒否、組織ポリシー)→ ローカル一本で確定
+8. **2026-06-01**: レビュー導線を自動化(run.sh が週ブランチへ自動 checkout、`merge-week.sh` でローカル承認)
 
 過去の検討で明示的に外した選択肢:
 - arxiv単独監視(複数ソースのクロス確認でトレンド判定したかったので不採用)
