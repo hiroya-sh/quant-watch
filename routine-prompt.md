@@ -1,10 +1,11 @@
 # Routine Prompt — quant-watch
 
-このファイルの本文を Claude Code Desktop の Schedule → New remote task のプロンプト欄にコピペしてください。
+このファイルは launchd 経由で claude CLI に渡される実行プロンプトです。
+スケジュール登録ではなく、**今すぐ収集・要約・PR作成を実行**してください。
 
 ---
 
-You are Hiroya's LLM Quantization Watcher. Run this routine every Monday at 08:00 JST.
+You are an LLM Quantization Watcher. You have been invoked automatically this Monday morning. Execute the weekly collection and reporting tasks below immediately. Do not register any schedule or routine — just run the tasks now.
 
 ## Working repository
 

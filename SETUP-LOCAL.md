@@ -107,6 +107,27 @@ launchd起動時の PATH が最小限なため。`run.sh` 内で PATH 補強し�
 export PATH="/path/to/claude/binary:$PATH"
 ```
 
+### `Operation not permitted` で run.sh が実行できない（重要）
+
+launchd 経由でだけ `bash: .../run.sh: Operation not permitted` が出る場合、原因は
+macOS の TCC（プライバシー保護）。`~/Documents` `~/Desktop` `~/Downloads` `iCloud Drive`
+は保護フォルダで、launchd が起動したプロセスには既定でアクセス権が無い（手動実行は
+Terminal の権限を継承するので動く）。
+
+`/bin/bash` をフルディスクアクセスに追加する回避策は、launchd の TCC 帰属では
+**安定して尊重されず効かないことが多い**。確実な解決は **repo を保護フォルダの外に置く**こと:
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+mv ~/Documents/quant-watch ~/quant-watch          # ホーム直下は非保護
+# ラッパー(~/bin/quant-watch-launch.sh)の exec パスを新しい場所へ更新
+launchctl load ~/Library/LaunchAgents/com.hiroya.quant-watch.plist
+launchctl start com.hiroya.quant-watch
+```
+
+`run.sh` は自分の位置から REPO_DIR を自動検出するため編集不要。移動後は Obsidian の
+vault を新パスで開き直す。**最初から `~/Documents` 以外に置くのが推奨。**
+
 ### pmset wake が効かない
 
 - MacBookは電源接続必須(バッテリ駆動だと wake しない設定がデフォルト)
