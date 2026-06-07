@@ -54,7 +54,22 @@
     "2605.31105",
     "2605.27808",
     "2605.30728",
-    "2605.26678"
+    "2605.26678",
+    "2606.05682",
+    "2606.05429",
+    "2606.05861",
+    "2606.04980",
+    "2606.04945",
+    "2606.04620",
+    "2606.04238",
+    "2606.04115",
+    "2606.04063",
+    "2606.04050",
+    "2606.03458",
+    "2606.03928",
+    "2606.02823",
+    "2606.02288",
+    "2606.01556"
   ],
   "github_releases": [
     "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc15",
@@ -125,7 +140,21 @@
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9441",
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9442",
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9444",
-    "https://github.com/neuralmagic/compressed-tensors/releases/tag/0.16.0"
+    "https://github.com/neuralmagic/compressed-tensors/releases/tag/0.16.0",
+    "https://github.com/vllm-project/vllm/releases/tag/v0.22.1",
+    "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc17",
+    "https://github.com/vllm-project/llm-compressor/releases/tag/v0.11.0",
+    "https://github.com/neuralmagic/compressed-tensors/releases/tag/0.17.0",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9541",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9542",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9543",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9544",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9547",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9548",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9549",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9550",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9551",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b9553"
   ],
   "hf_models": [
     "canada-quant/DeepSeek-V4-Flash-NVFP4-FP8-MTP",
@@ -152,12 +181,13 @@
     "NeuralNet-Hub/gemma-4-31B-it-abliterated-uncensored-NVFP4",
     "YihongJin/Qwen3-Omni-30B-A3B-Instruct-NVFP4-W4A4-full-thinker-awqclip",
     "sakamakismile/LFM2.5-8B-A1B-NVFP4",
-    "shawnw3i/Qwen3.6-27B-AWQ-MTP"
+    "shawnw3i/Qwen3.6-27B-AWQ-MTP",
+    "AxionML/Gemma-4-12B-NVFP4"
   ],
   "_meta": {
-    "last_run": "2026-06-01",
-    "week": "2026-W23",
-    "window_start": "2026-05-25T00:00:00+09:00",
-    "window_end": "2026-06-01T00:00:00+09:00"
+    "last_run": "2026-06-08",
+    "week": "2026-W24",
+    "window_start": "2026-06-01T00:00:00+09:00",
+    "window_end": "2026-06-08T00:00:00+09:00"
   }
 }
