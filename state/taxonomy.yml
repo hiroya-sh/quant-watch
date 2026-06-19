@@ -27,6 +27,7 @@ models:
   # Moonshot
   - moonshotai/Kimi-K2.5
   - moonshotai/Kimi-K2.6
+  - moonshotai/Kimi-K2.7
   # Zhipu
   - zai-org/GLM-5.1
   # Mistral
@@ -42,6 +43,7 @@ models:
   - nvidia/Nemotron
   # MiniMax
   - MiniMaxAI/MiniMax-M2.7
+  - MiniMaxAI/MiniMax-M3
 
 # アーキテクチャ: lowercase
 # 1つのモデルが複数該当することあり(例: Nemotron-H = hybrid + mamba + transformer)
@@ -56,6 +58,7 @@ architectures:
   - hybrid           # Mamba+Transformer等
   - moe              # アーキテクチャとしてのMoE
   - dense
+  - lfm              # Liquid Functional Model (LiquidAI LFM系)
 
 # 量子化手法: 大文字優先
 methods:
@@ -81,6 +84,8 @@ methods:
   - NVFP4            # NVIDIA Blackwell native FP4
   - MXFP4
   - MXFP6
+  - MixFP4           # NVFP4拡張 (E2M1/E1M2適応選択)
+  - ROCmFP4          # AMD ROCm向けFP4フォーマット
   - NF4
   # ビット割当
   - AutoRound
@@ -93,6 +98,11 @@ methods:
   - GGUF
   - EXL2
   - EXL3
+  # その他PTQ/QAT手法 (W24-25 追加)
+  - CKA-QAD          # NVFP4蒸留の表現幾何保全 (QAD)
+  - Qift             # No-Zero W2レベルセット + KV4量子化
+  - SAGE-PTQ         # スケールオーバーヘッド最小化の超低ビットPTQ
+  - OptiQ            # Apple Silicon MLX向け4-bit量子化
 
 # 技術要素: kebab-case
 tech:
@@ -103,6 +113,7 @@ tech:
   - full-quant
   # ビット深度
   - low-bit-fp8
+  - hif8                      # High-quality FP8 (FP8産業標準化名称)
   - low-bit-fp6
   - low-bit-fp4
   - low-bit-4
@@ -119,6 +130,7 @@ tech:
   - polar-rotation
   - qjl-correction
   - outlier-handling
+  - variance-normalization    # 分散正規化 (KVarN, Hadamard併用のKV誤差削減)
   - block-wise
   - per-channel
   - per-token
@@ -127,6 +139,8 @@ tech:
   - moe-quant
   - long-context-quant
   - pre-rope-quant
+  - vla-quant                 # Vision-Language-Action モデルへの量子化
+  - diffusion-llm-quant       # 拡散LLM (非自己回帰) への量子化
   # 関連技術(量子化外だが文脈で出る)
   - speculative-decoding
   - paged-attention
@@ -134,3 +148,6 @@ tech:
   - kv-cache-compression-non-quant
   - latent-compaction
   - reasoning-aware-compression
+  - sparse-attention                # 注意スパース化によるKV計算削減
+  - lossless-compression            # 精度劣化なしのGPUメモリ圧縮 (IBP等)
+  - lossless-quantization-recovery  # 量子化後の精度回復 (Recover-LoRA等)
