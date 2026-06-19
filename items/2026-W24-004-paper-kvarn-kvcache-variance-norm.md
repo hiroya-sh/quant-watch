@@ -43,7 +43,7 @@ kv-cache-quantがfocus。reasoning model（Qwen3等）普及でlong-horizon deco
 # 詳細解説（原著精読: 2026-06-19）
 
 > 出典: arXiv:2606.03458v1「KVarN: Variance-Normalized KV-Cache Quantization Mitigates Error Accumulation in Reasoning Tasks」(Muller, Bich, Boretti, Chang, Zhuang, Cavigelli — **Huawei**)。HTML版 <https://arxiv.org/html/2606.03458v1> を精読。引用は原文ママ（> で併記）。本文中の式番号・図番号・節番号は原著に対応。
-> 注: 本解説は本文§1〜§4.1.1（Table 1 まで）を精読して作成。Table 2/3・line-retrieval・runtime overhead・related work・付録の数値は未読部分があり、確認できた範囲のみ記載している（捏造防止のため）。
+> 注: 本解説は本文（HTML版 §1〜§4.1.1）＋ **PDF版（arxiv.org/pdf/2606.03458）の全文** を精読して作成。当初HTML取得がTable 1途中で切れていた Table 2/3/4・runtime overhead・conclusion の数値は PDF から補完済み（2026-06-19 追記）。
 
 ## 1. 何を解いた論文か
 
@@ -260,11 +260,66 @@ KVarN は全コンテキスト長で KIVI より誤差が小さく、**文脈が
 | Kitty | 2/2 | 2.4 | 53.3 ±8.8 | 78.5 ±0.8 |
 | **KVarN (ours)** | 2/2 | **2.3** | **60.0 ±1.1** | **79.2 ±0.4** |
 
-**Phi-4-14B**（一部）: FP16 AIME24 62.2 / MATH500 84.9。KIVI 57.8 / 74.4、QuaRot 58.9 / 77.0、KVQuant-1% 55.6 / 72.3、PolarQuant(4/2) 60.0 / 75.8 … KVarN行は今回読んだHTML範囲では末尾が途切れており未確認。
+**Phi-4-14B**（PDFより補完）:
 
-注目点：**2bit (2.3 bit/elem) でありながら AIME24 で 60.0% と FP16(61.1%) にほぼ肉薄**し、より多ビットを使う PolarQuant(3.3) や TurboQuant(4.6) を上回る。focus手法 **PolarQuant / TurboQuant がここでは比較対象（baseline）側**として大差で負けている点は、Hiroyaさんの関心軸的に要注目。KVQuant-1% のような mixed-precision（UP=×）でなく **uniform precision（UP=✓）で達成**しているのも実装上の利点。
+| 手法 | K/V bits | bits/elem | AIME24 Acc. | MATH500 Acc. |
+|---|---|---|---|---|
+| FP16（無圧縮） | 16/16 | 16.0 | 62.2 ±1.6 | 84.9 ±0.9 |
+| KIVI | 2/2 | 2.3 | 57.8 ±1.9 | 74.4 ±0.8 |
+| QuaRot | 2/2 | 2.3 | 58.9 ±1.9 | 77.0 ±0.7 |
+| KVQuant-1% | 2/2 | 2.4 | 55.6 ±5.1 | 72.3 ±5.1 |
+| PolarQuant | 4/2 | 3.3 | 60.0 ±1.9 | 75.8 ±1.0 |
+| **KVarN (ours)** | 2/2 | **2.3** | **61.7 ±1.7** | **84.8 ±0.7** |
 
-> 注: Table 2（HumanEval / IFEval）・Table 3・line-retrieval(§4.1.2)・runtime overhead(§4.2) の数値は今回のHTML取得が Table 1 途中で打ち切られたため未確認。必要なら PDF を読んで追記する。
+注目点：**2bit (2.3 bit/elem) でありながら AIME24 60.0%（Qwen3-4B, FP16 61.1%）・61.7%（Phi-4, FP16 62.2%）、MATH500 でも Phi-4 で 84.8%（FP16 84.9%）とほぼロスレス**。特に Phi-4 では **KIVI が MATH500 74.4% まで崩落するのに対し KVarN は 84.8% を維持**し、累積誤差耐性の差が顕著。より多ビットを使う PolarQuant(3.3) や TurboQuant(4.6) も上回る。focus手法 **PolarQuant / TurboQuant がここでは比較対象（baseline）側**として大差で負けている点は、Hiroyaさんの関心軸的に要注目。KVQuant-1% のような mixed-precision（UP=×）でなく **uniform precision（UP=✓）で達成**しているのも実装上の利点。
+
+### Table 2（HumanEval, 精度% / 生成トークン数）
+2モデル（Qwen3-4B / Phi-4-reasoning-plus）。
+
+| 手法 | bits/elem | HumanEval Acc. (Qwen3-4B) | HumanEval Acc. (Phi-4) |
+|---|---|---|---|
+| FP16 | 16.0 | 88.8 ±1.8 | 88.9 ±1.0 |
+| KIVI | 2.3 | 86.4 ±1.3 | **74.6 ±2.4**（崩落） |
+| QuaRot | 2.3 | 86.3 ±1.9 | — |
+| **KVarN (ours)** | **2.3** | **88.4 ±0.3** | **88.2 ±0.4** |
+
+ここでも Phi-4 で KIVI が 74.6% に崩れるのに対し、KVarN は 88.2% とほぼFP16（88.9%）。コーディングでも累積誤差抑制が効いている。
+
+### Table 3（IFEval, Prompt-Level Strict / Loose 精度%）
+3モデル × (Strict, Loose)。順に Qwen3-4B / Llama-3.1-8B / Phi-4 と解釈（§4 のモデル構成より）。
+
+| 手法 | Qwen S/L | Llama S/L | Phi-4 S/L |
+|---|---|---|---|
+| QuaRot(2/2) | 80.3 / 83.2 | 70.9 / 74.5 | 60.6 / 67.7 |
+| Hadamard | 79.3 / 82.8 | 70.8 / 75.0 | 62.6 / 68.2 |
+| KVQuant-1% | 76.9 / 80.8 | 57.7 / 61.4 | 55.1 / 61.2 |
+| PolarQuant(4/2) | 79.1 / 82.6 | 69.5 / 75.0 | 62.5 / 68.4 |
+| TurboQuant(3/3) | 79.2 / 81.7 | 66.5 / 71.0 | 57.7 / 62.7 |
+| Kitty | 78.0 / 81.9 | 70.2 / 75.2 | 63.2 / 69.0 |
+| **KVarN (ours)** | **80.4 / 83.4** | **71.0 / 76.5** | **63.4 / 69.2** |
+
+instruction-following でも **KVarN がほぼ全列で最良**（原著「best results per column are highlighted」）。reasoning偏重でなく汎用的に堅い。
+
+### Table 4（Line Retrieval, 文脈長 L=100/200/300/400/500/600 行での精度%）
+prefill的な長文脈検索（§4.1.2）。代表値を抜粋：
+
+| モデル / 手法 | 100 | 200 | 300 | 400 | 500 | 600 |
+|---|---|---|---|---|---|---|
+| Qwen3-4B KVarN | 100 | 99 | 98 | 97 | 97 | 85 |
+| Llama-3.1-8B FP16 | 100 | 99 | 99 | 96 | 93 | 92 |
+| Llama-3.1-8B KIVI | 98 | 97 | 90 | 84 | 80 | 83 |
+| Llama-3.1-8B **KVarN** | 99 | 98 | 98 | 95 | 91 | 89 |
+| Phi-4 FP16 | 100 | 100 | 100 | 98 | 100 | 95 |
+| Phi-4 KIVI | 95 | 96 | 88 | 88 | 91 | 82 |
+| Phi-4 **KVarN** | 100 | 99 | 99 | 97 | 98 | 95 |
+
+長文脈ほど KIVI との差が開き（例: Llama L=300 で 90→98、Phi L=400 で 88→97）、KVarN は FP16 にほぼ追従。§3.4 の「長文脈ほど優位拡大」と整合。
+
+## 4.2 ランタイム / メモリ（§4.2・Conclusion）
+追加の dual-scaling は復元時 token×channel あたり +1 FLOP のみ。実測の**量子化レイテンシのオーバヘッドは baseline比 0.18%**で、ほぼ無視できる。
+
+> 原著 Conclusion:
+> *"With KVarN we achieve state-of-the-art quality on generative benchmarks including AIME24, MATH-500, HumanEval and IF-Eval, enabling **near loss-less 2.3bit per-element KV-Caches with a measured quantization latency overhead of 0.18% over baseline.**"*
 
 ## 5. 位置づけ・focusとの接続
 
