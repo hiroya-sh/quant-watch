@@ -38,6 +38,13 @@ Filtering:
 - アイテムID (arxiv ID / repo URL / HF model ID) が `seen.json` に存在する場合は除外
 - 例外: 論文 v2+ や repo の新 release は `status: updated` で再登録
 
+⚠ **一次情報の実在検証(必須・2026-07 追加)**:
+- 記載する arxiv URL / GitHub リポジトリ URL / HF model ID は、**実際にアクセスして 200 が返ること**を確認する。
+- arxiv ID は「その ID が本当にそのタイトル/著者の論文か」を突き合わせる(ID 使い回し・取り違え防止)。
+- 検証できなかったアイテムは **捏造せず**、`status: unverified` を付け weekly の「概況」に
+  「一次情報未確認: {件数}」として明示する。実在しない論文・リポジトリを本文に書かない。
+  (背景: W28 で KV-Codex 等が実在しない URL / 取り違え arxiv ID で生成された。再発防止。)
+
 ## Stage 2: Tag & Priority Assignment
 
 各アイテムについて:
@@ -49,6 +56,13 @@ Filtering:
    - `focus` の項目にマッチ → priority を +1段階(normal→high, watching→normal)
    - `deprioritize` にマッチ → -1段階下げる
    - matching: models は substring、それ以外は exact
+   - **実装エンジン bump (2026-07 監視方針)**: `priorities.yml` の `implementation_focus` に従い、
+     vLLM に統合済み or vLLM で直接ロードできる量子化済みモデルとして出たアイテムには
+     tech タグ `vllm-ready` を付与し、focus と同様に +1段階 bump する。
+     (TRT-LLM は `trtllm-ready`、llama.cpp/GGUF は `llamacpp-ready` を付与するが bump は vllm-ready のみ)
+   - ⚠ **エンジン統合の真偽確認**: 「vLLM/TRT-LLM に統合された」という主張は release note や
+     公式ドキュメントの一次情報で裏取りできた場合のみ `*-ready` を付与する。論文側の
+     "we integrate into vLLM" だけを根拠にしない(未マージ/fork の可能性があるため)。
 3. **Default priority**:
    - `high`: 既存手法を上回る精度改善の明確な主張 / 主要モデルへの新規適用 / 主要推論エンジンへの統合
    - `normal`: 内容明確だが上記の特筆事項なし
