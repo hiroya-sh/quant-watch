@@ -14,9 +14,14 @@ methods: [AWQ, GPTQ, HQQ]
 tech: [vla-quant, weight-only, low-bit-3, activation-quant, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W26-008]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.00234 に該当なし。VLA-Q3は存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 W26 Mix-QVLA の後続として、Physical Intelligence π0 / OpenVLA-2 / NVIDIA Isaac-VLA の 3 モデルに対する 3-bit 統一量子化。VLA 特有の「連続 action head」の量子化敏感度を、動作ドメイン別（並進 / 回転 / グリッパー）で分析。並進成分は AWQ 3-bit で 91% 成功率保持、回転成分は HQQ 4-bit 必須、グリッパーは FP8 のままが最適という mixed-precision recipe を提示。

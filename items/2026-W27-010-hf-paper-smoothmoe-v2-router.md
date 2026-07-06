@@ -17,9 +17,14 @@ methods: [SmoothQuant, AWQ]
 tech: [moe-quant, activation-quant, calibration, per-channel, ptq]
 priority: normal
 sources: [hf-papers, arxiv]
-status: new
+status: fabricated
 related: [2026-W26-001, 2026-W27-005]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.27091 はセキュリティの別論文。SmoothMoE V2ではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 SmoothQuant の MoE 拡張第 2 弾。ルーター層出力（gating scores）の分布特性に基づき、エキスパート別の smoothing factor を動的調整する。固定 smoothing が共有 backbone 想定だった V1 に対し、V2 はルーター→エキスパート間の活性化アウトライアをエキスパート単位で平準化。DeepSeek-V4 / Qwen3.5 MoE / Kimi-K2.6 で W4A4 を MMLU -1.2pt（V1: -2.4pt）に改善。

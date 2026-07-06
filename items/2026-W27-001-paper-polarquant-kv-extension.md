@@ -14,9 +14,14 @@ methods: [PolarQuant, TurboQuant, QJL]
 tech: [kv-cache-quant, polar-rotation, low-bit-3, low-bit-fp4, rotation, long-context-quant, per-token]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W26-003]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.21503 に該当論文なし。PolarQuant自体は実在(2502.02617)だが、このKV拡張論文は存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 PolarQuant原著（W14）が weight-only に限定していた極座標量子化を KV cache に拡張した直接後継論文。極座標分解（半径 r + 角度θ）でアウトライアが集中する半径方向を高精度に、角度方向を低ビットでブロック共有することで、Walsh-Hadamard 系（TurboQuant/UltraQuant）よりも 1-bit 低いビット予算で同等精度を達成すると主張。3-bit KV で Llama-3.3-70B / Qwen3.5-32B / DeepSeek-V4-Pro の長文脈（128K）推論を ROUGE-L 99.4% 保持、FP16 比 5.2倍のメモリ削減。CUDA カーネルは Hopper・Blackwell・CDNA4 でテンプレート展開。

@@ -12,9 +12,13 @@ methods: [AWQ, GGUF]
 tech: [weight-only, moe-quant, low-bit-4, low-bit-fp8]
 priority: normal
 sources: [hf-models]
-status: new
+status: needs-correction
 related: [2026-W27-017]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> unsloth/Kimi-K2.7-140B-GGUF は404。実在は unsloth/Kimi-K2.7-Code-GGUF(K2.7は1T MoE, 140B denseではない)。
+
 
 ## 日本語要約
 unsloth が Kimi K2.7 リリース（Moonshot AI が W27 末に発表した後継モデル）を受けて即座に 6 モデル一斉量子化リリース。dense 140B と MoE 320B-A32B の 2 変種に対して、それぞれ FP8 / GGUF Q4_K_M / AWQ INT4 の 3 種類を提供。Moonshot AI 公式は FP8 のみのため、AWQ / GGUF が unsloth 提供の初動となる。llama.cpp W28 builds (W28-013) の Kimi-K2 router 整合バグ修正と同期リリース。

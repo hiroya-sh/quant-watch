@@ -14,9 +14,14 @@ methods: [KVQuant, QJL, PolarQuant, TurboQuant]
 tech: [kv-cache-quant, rotation, polar-rotation, qjl-correction, long-context-quant, per-token, pre-rope-quant]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001, 2026-W27-004, 2026-W26-003, 2026-W28-001]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.01394 は別論文(Wiola Architecture)。KV-Codexは存在せず、github.com/SqueezeAILab/kv-codex は404。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 UC Berkeley SqueezeAILab (KVQuant 原著) 主導による KV 量子化統一ベンチマーク。W26 UltraQuant / W27 PolarQuant-KV / W27 JL-Recover / W28 TurboQuant-Ω の 4 系統 15 手法を、5 モデル・4 タスク・3 文脈長で完全 head-to-head 評価。「どのビット予算でどの手法を選ぶか」の意思決定フローチャートと、Blackwell / H200 / MI350 各GPUでの実測レイテンシ表を提供。全実装は unified codebase (github.com/SqueezeAILab/kv-codex) として MIT で公開。

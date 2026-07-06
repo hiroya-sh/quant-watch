@@ -12,9 +12,13 @@ methods: [AWQ]
 tech: [weight-only, moe-quant, low-bit-4, mixed-precision]
 priority: normal
 sources: [hf-models]
-status: new
+status: needs-correction
 related: [2026-W26-014]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> mlx-community/Nemotron-3-Nano-30B-A3B-4bit は404。実在は mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit('NVIDIA-'欠落)。
+
 
 ## 日本語要約
 mlx-community が Nemotron-3 ファミリー 3 モデルの MLX 4-bit 量子化を一斉リリース。W26 で HF Papers に登場した Nemotron-3 系のうち、mlx への MLX 変換が W28 で揃った。Ultra 550B-A55B の MoE 部分と Nemotron-H hybrid の mamba2 部分の両方に対応した変換パイプラインが公開。Apple Silicon (M4 Ultra 192GB) で Ultra-550B-A55B の実機推論が可能になった初のリリース。

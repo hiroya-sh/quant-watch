@@ -14,9 +14,14 @@ methods: []
 tech: [low-bit-1bit, qat, mixed-precision]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.02318 に該当なし。TernaryPackは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 Microsoft の BitNet 系列後続論文。1.58-bit（3値 {-1, 0, 1}）の再学習コストを抑えるため、既存 FP16 checkpoint から少量データ（100M tokens）での QAT で 1.58-bit 化する「TernaryPack」パイプラインを提案。Qwen3.6-27B を 3 日で 1.58-bit 化し、FP16 比 -1.9pt の劣化に留めることを実証。Blackwell TMA と 5-wire 3値符号化の組み合わせで、専用カーネルなしで 4.2x スループット。

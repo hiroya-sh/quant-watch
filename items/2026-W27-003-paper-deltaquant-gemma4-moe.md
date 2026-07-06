@@ -14,9 +14,14 @@ methods: [GPTQ, AutoRound, MoQAE]
 tech: [moe-quant, mixed-precision, ptq, weight-only, low-bit-3, low-bit-4, calibration]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W26-001]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.22890 は顕微鏡研究の別論文(PHOEBI)。DeltaQuantではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 Gemma 4 MoE（12B/26B-A4B/31B 系）に特化した「エキスパート差分」量子化。各エキスパート重みを「共有 backbone + sparse delta」に分解し、backbone を W4 で量子化、delta 部分のみ W2/W3 で per-expert に低ビット化する。W26 MODE がエキスパート重要度に応じてビット幅を割り当てたのに対し、DeltaQuant は構造そのものを再構築し平均 W3.1（実効）でベース精度差 1.4pt 以内に抑える。マルチモーダル経路（vision/audio）のエキスパートで delta が小さい現象を実証的に発見し、視覚エキスパートでより積極的な低ビット化を許容。

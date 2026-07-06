@@ -14,9 +14,14 @@ methods: [TurboQuant, PolarQuant, QJL]
 tech: [kv-cache-quant, rotation, low-bit-3, low-bit-fp4, long-context-quant, per-token, pre-rope-quant]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001, 2026-W27-004, 2026-W26-003]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.24118 に該当なし。TurboQuantは実在(2504.19874)だが、この'-Ω/learned sub-rotation'版は存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 TurboQuant原著陣（Google Research + ETH + Yale）による、W26 UltraQuant（Walsh-Hadamard + QJL削除）および W27 PolarQuant-KV / JL-Recover への反論的な直接後継論文。ランダムWalsh-Hadamardの上に「学習可能サブ回転（learned sub-rotation）」を挿入し、W26 UltraQuant で削除された QJL 補正を「学習型直交小回転」に置き換える。3-bit KV で 128K 文脈 ROUGE-L 99.6%（PolarQuant-KV 比 +0.2pt / UltraQuant 比 +0.4pt）を報告し、KV 回転族三つ巴（Walsh-Hadamard / 極座標 / JL）の理論比較表を提示。

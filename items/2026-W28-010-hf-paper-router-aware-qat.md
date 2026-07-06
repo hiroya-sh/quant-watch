@@ -14,9 +14,14 @@ methods: [SmoothQuant, MXFP4, AWQ]
 tech: [moe-quant, qat, low-bit-fp4, low-bit-4, calibration]
 priority: normal
 sources: [hf-papers, arxiv]
-status: new
+status: fabricated
 related: [2026-W27-010, 2026-W25-006]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> hf-paper/arxiv 2607.01108 に該当なし。Router-Aware QATは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 W27 SmoothMoE V2 の後継として、MoE の router 側を QAT で fine-tune し、expert が積極的に量子化されても routing 品質を保つ手法。router forward の学習可能温度と QAT-safe softmax を導入。expert を MXFP4 に量子化した状態で router を 100k steps 学習し、FP16 baseline に対して routing 一致率 96% を保持（既存手法 89%）。HF Papers で 64 upvotes。

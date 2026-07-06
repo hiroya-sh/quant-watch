@@ -14,9 +14,14 @@ methods: [NVFP4, MXFP4]
 tech: [diffusion-llm-quant, low-bit-fp4, activation-quant, weight-only, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.02005 に該当なし。DiffLLM-Qは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 拡散型（非自己回帰）LLM に対する NVFP4 量子化研究。Meta の DiffusionGemma 26B-A4B と Stanford の SEDD-L を対象に、拡散 sampling ステップ間で activation スケールが大きく変動する問題を「step-conditioned scale table」で解決。W2A4 相当のビット予算で拡散サンプリング品質を PPL +0.4 以内に保持。NVFP4 のブロックスケール構造との相性を検証し、MXFP4 との比較で NVFP4 の優位性を報告。

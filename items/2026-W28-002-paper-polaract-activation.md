@@ -14,9 +14,14 @@ methods: [PolarQuant, SmoothQuant]
 tech: [activation-quant, polar-rotation, rotation, low-bit-fp4, low-bit-fp6, per-token, outlier-handling]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.00782 に該当なし(確率オートマトンの別論文)。PolarActは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 W27 PolarQuant-KV の主著陣によるフォローアップ論文で、極座標分解を「activations」に拡張。activation の per-token アウトライアが半径方向（r）に集中する性質を利用し、r を FP6 / 角度 θ を FP4 に配分することで、SmoothQuant / QuaRot 系のスケール補正なしで W4A4 相当の精度を達成すると主張。MoE 経路（Qwen3.6-35B-A3B, Gemma-4-26B-A4B）でも一致した精度を確認。

@@ -14,9 +14,14 @@ methods: [MXFP6, MXFP4, CKA-QAD]
 tech: [moe-quant, microscaling-formats, low-bit-fp6, qat, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W26-001, 2026-W26-005]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.24008 に該当論文なし。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 MXFP6（E3M2 / E2M3 マイクロスケーリング）を MoE 重みに適用する蒸留型 QAT。Active experts のみが per-token に呼び出される MoE の特性を活用し、エキスパートの呼び出し頻度に応じた calibration token 数を動的調整。BF16 教師から MXFP6 生徒への CKA（Centered Kernel Alignment）蒸留損失で表現幾何を保全し、Qwen3.5-32B MoE / DeepSeek-V4-Pro / Kimi-K2.6 で BF16 比 -0.5pt 以内（MMLU/GSM8K）。FP4 (MXFP4) と FP8 の中間帯として精度マージン重視の用途に位置づけ。

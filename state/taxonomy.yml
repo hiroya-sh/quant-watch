@@ -103,19 +103,10 @@ methods:
   - Qift             # No-Zero W2レベルセット + KV4量子化
   - SAGE-PTQ         # スケールオーバーヘッド最小化の超低ビットPTQ
   - OptiQ            # Apple Silicon MLX向け4-bit量子化
-  # W28 追加 (2026-07-07 承認)
-  # ⚠ 実在検証メモ: TurboQuant/PolarQuant/QJL/UltraQuant/KVQuant は実在する基盤手法。
-  #   ただし下記のうち TurboQuant-Ω / PolarAct / KV-Codex / KV-Evict-Q / SpecuMoE-Q /
-  #   VLA-Q3 / DiffLLM-Q / Router-Aware QAT / TernaryPack は W28 routine 生成時点で
-  #   一次情報(arxiv ID/リポジトリ)を確認できず。語彙としては登録するが、議題採用前に原著を要確認。
-  - TurboQuant-Ω     # TurboQuant 学習補正版 (要一次情報確認)
-  - PolarAct         # PolarQuant の activation 拡張 (要一次情報確認)
-  - TernaryPack      # BitNet warm-start 化パイプライン (要一次情報確認)
-  - VLA-Q3           # VLA action head 特化 mixed-precision PTQ (要一次情報確認)
-  - DiffLLM-Q        # 拡散LLM 向け NVFP4 step-conditioned PTQ (要一次情報確認)
-  - Router-Aware-QAT # MoE router 側 QAT (要一次情報確認)
-  - KV-Evict-Q       # KV eviction × quantization 統合 (要一次情報確認)
-  - SpecuMoE-Q       # 量子化 MoE draft による speculative decoding (要一次情報確認)
+  # W28 タグ候補は 2026-07-07 の一次情報検証で【全て捏造論文由来】と判明したため撤回。
+  #   TurboQuant-Ω / PolarAct / TernaryPack / VLA-Q3 / DiffLLM-Q / Router-Aware-QAT /
+  #   KV-Evict-Q / SpecuMoE-Q / KV-Codex は、対応する arxiv 論文が存在しない(別分野の論文か未登録)。
+  #   実在する基盤手法(TurboQuant / PolarQuant / QJL / KVQuant)は上に既登録済み。
 
 # 技術要素: kebab-case
 tech:
@@ -164,10 +155,8 @@ tech:
   - sparse-attention                # 注意スパース化によるKV計算削減
   - lossless-compression            # 精度劣化なしのGPUメモリ圧縮 (IBP等)
   - lossless-quantization-recovery  # 量子化後の精度回復 (Recover-LoRA等)
-  # W28 追加 (2026-07-07 承認)
-  - step-conditioned-quantization   # 拡散LLM の step 依存 scale 動的化 (diffusion-llm-quant のサブ)
-  - router-side-qat                 # MoE router のみ QAT する概念
-  - unified-kv-benchmark            # KV量子化の統一評価ベンチ (KV-Codex 等。※W28分は一次情報未確認)
+  # step-conditioned-quantization / router-side-qat / unified-kv-benchmark は
+  #   由来アイテム(W28-005/010/003)が捏造と判明したため 2026-07-07 に撤回。
   # 運用タグ: エンジン実装状況 (2026-07-07 監視方針で追加)
   - vllm-ready                      # vLLM でロード/実行可能(native統合 or 量子化済みモデル配布)
   - trtllm-ready                    # TensorRT-LLM 実装あり

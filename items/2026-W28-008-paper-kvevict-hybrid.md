@@ -14,9 +14,14 @@ methods: [KVQuant, PolarQuant]
 tech: [kv-cache-quant, kv-cache-eviction, long-context-quant, low-bit-3, per-token, sparse-attention]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001, 2026-W28-003]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.02591 に該当なし。KV-Evict-Qは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 KV cache の「eviction（枝刈り）」と「quantization」を独立軸として扱うのではなく、joint 最適化する研究。CMU H2O / Together AI Streaming-LLM 系の後継。128K 文脈で、eviction 率 40% + PolarQuant-KV 3-bit で FP16 比 メモリ 12x 削減、精度劣化 ROUGE-L -0.5pt。W28 KV-Codex のフローチャートに joint 軸を追加する提案。

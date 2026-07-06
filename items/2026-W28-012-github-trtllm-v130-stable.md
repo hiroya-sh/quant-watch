@@ -14,9 +14,13 @@ methods: [NVFP4, MXFP4, PolarQuant]
 tech: [moe-quant, low-bit-fp4, kv-cache-quant, activation-quant, polar-rotation]
 priority: normal
 sources: [github]
-status: new
+status: needs-correction
 related: [2026-W27-012]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> TRT-LLM v1.3.0 stable は存在しない(rc19まで)。'stable'記述は虚偽。
+
 
 ## 日本語要約
 TensorRT-LLM v1.3.0 の正式リリース（W27 v1.3.0rc19 の promote 版）。W27 で導入された Blackwell B200/B300 向け WGMMA NVFP4 KV native カーネルが GA 化、NVFP4 statistics APIs が確定。Llama-4 全構成（W28-009）と Qwen3.6（W27-009）の公式量子化レシピを両方サポート。PolarQuant-KV の Blackwell native 実装が experimental フラグ付きで参入。

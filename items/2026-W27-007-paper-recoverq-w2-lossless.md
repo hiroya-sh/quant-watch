@@ -14,9 +14,14 @@ methods: [GPTQ, AWQ]
 tech: [lossless-quantization-recovery, low-bit-2, ptq, weight-only, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W25-002]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.25109 は数学の別論文(Binomial sequences)。RecoverQではない(実在のRecover-LoRAは2606.04238=W24-012)。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 W2 量子化後に「拡散モデル」スタイルの ノイズ除去 LoRA を後付けで学習し、精度を完全復元する手法。GPTQ-W2 / AWQ-W2 で発生した重みノイズを「学習可能逆拡散プロセス」として捉え、ガウシアン経路を 16-step で復元する形で 0.5% パラメータ追加のみで Llama-3.3-70B / Qwen3.5-32B の MMLU を W2 から +5.2pt 復元、BF16 比 -0.4pt 以内。W24 Recover-LoRA の後継ライン。

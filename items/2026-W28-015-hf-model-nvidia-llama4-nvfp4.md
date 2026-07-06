@@ -12,9 +12,13 @@ methods: [NVFP4]
 tech: [low-bit-fp4, moe-quant, kv-cache-quant, activation-quant, weight-only]
 priority: high
 sources: [hf-models]
-status: new
+status: needs-correction
 related: [2026-W28-009, 2026-W27-016]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> nvidia/Llama-4-405B-NVFP4 は404(Llama-4に405Bは無い)。実在は nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4。
+
 
 ## 日本語要約
 NVIDIA 公式 Llama-4 NVFP4 ファミリーの 3 モデル同時公開。Meta 公式技術報告（W28-009）の NVFP4 W4A4 レシピを NVIDIA が独自校正で実施したバージョン。Llama-4-70B、Llama-4-405B、Llama-4-Scout-16E-A2B の 3 バリアント（後者は MoE で expert のみ NVFP4、router は FP8）。TRT-LLM v1.3.0（W28-012）、vLLM v0.24.0（W28-011）、SGLang v0.4.5 の全推論エンジンで即動作確認済み。

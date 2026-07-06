@@ -14,9 +14,13 @@ methods: [NVFP4, MXFP4, PolarQuant, TurboQuant, GPTQ, AWQ]
 tech: [moe-quant, low-bit-fp4, kv-cache-quant, weight-only, activation-quant, polar-rotation, rotation]
 priority: normal
 sources: [github]
-status: new
+status: needs-correction
 related: [2026-W27-015]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> llm-compressor v0.13.0 は存在しない(実在最新は 0.12.x)。
+
 
 ## 日本語要約
 llm-compressor v0.13.0 リリース。W27 v0.12.1（PolarQuant 試験統合）から 8 日での大型更新。Llama-4 公式量子化レシピ（W28-009）を「CompressionRecipe」として完全採用、W28 KV-Codex（W28-003）のフローチャート推奨レシピを YAML テンプレート化。PolarQuant が experimental → beta に昇格、TurboQuant-Ω（W28-001）も experimental で試験統合。

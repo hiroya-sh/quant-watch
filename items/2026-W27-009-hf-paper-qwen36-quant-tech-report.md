@@ -17,9 +17,14 @@ methods: [GPTQ, AWQ, NVFP4, MXFP4, AutoRound]
 tech: [moe-quant, low-bit-fp8, low-bit-fp4, low-bit-4, ptq, qat, mixed-precision]
 priority: high
 sources: [hf-papers, arxiv]
-status: new
+status: fabricated
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.26483 は科学計量学の別論文。Qwen3.6量子化技術報告ではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 Qwen3.6 ファミリー（27B-dense / 35B-A3B-MoE / 40B / Omni multimodal）に対する Qwen Team 公式の量子化技術報告。FP8（W8A8 / KV8）・NVFP4（W4A4 / KV4）・AWQ-W4A16・GPTQ-Int4・MXFP4-MoE の 5 構成について、推奨 calibration セット・ビット選択基準・性能曲線を公開。MoE モデルでは MXFP4 weights + FP8 KV が「精度マージン重視構成」、NVFP4 weights + NVFP4 KV が「メモリ重視構成」のリファレンス。HuggingFace Hub 上で対応モデルカードを一括公開し、92 upvotes（HF Papers）。

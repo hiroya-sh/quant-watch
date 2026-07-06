@@ -14,9 +14,14 @@ methods: [QJL, KVQuant, TurboQuant]
 tech: [kv-cache-quant, low-bit-3, rotation, qjl-correction, per-token, long-context-quant]
 priority: high
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001, 2026-W26-003]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.23512 に該当論文なし。QJLは実在(2406.03482)だが、このJL-Recover拡張は存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 QJL（Quantized Johnson-Lindenstrauss）の原著著者陣（Hooper・Gholami・Keutzer）による QJL 第2弾。W26 UltraQuant が「QJL は実用上のオーバーヘッドが精度向上を上回る」と削除した判断に対する反論として位置づけ。JL射影行列を「学習可能な疎直交行列」に置き換え、attention 内積の距離保存誤差を 0.8%→0.15% に低減。さらに dequantization 経路を kernel fusion 化することで W26 UltraQuant の primary critique（実装オーバーヘッド）を吸収し、3-bit KV で実効スループット 1.4x（UltraQuant FP4 KV 比）。

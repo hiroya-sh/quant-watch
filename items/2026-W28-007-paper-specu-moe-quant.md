@@ -14,9 +14,14 @@ methods: [AWQ, NVFP4]
 tech: [moe-quant, speculative-decoding, low-bit-4, low-bit-fp4, weight-only]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W26-007]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2607.01821 に該当なし。SpecuMoE-Qは存在しない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 W26 EfficientRollout の後続として、speculative decoding における draft model 側を「full quantized MoE」で構成する研究。従来 dense small model が主流だった draft を NVFP4 quantized MoE (Qwen3.6-35B-A3B) にすることで、target model (DeepSeek-V4-Pro) との expert alignment が高まり acceptance rate が向上。draft メモリを 4-bit AWQ で 8x 削減しつつ 2.7x スループット達成。
