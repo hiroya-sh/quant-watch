@@ -14,9 +14,14 @@ methods: [NF4, bitsandbytes]
 tech: [low-bit-4, weight-only, ptq]
 priority: watching
 sources: [arxiv]
-status: new
+status: fabricated
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.25776 は物理学の別論文(Optical Rotatory Dispersion)。NF5拡張ではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 NF4（QLoRA で標準採用）の 5-bit 拡張 NF5 を提案する短い技術ノート（6ページ）。正規分布の累積分布関数を 5-bit に等密度分割し、Fisher 情報量で最適化。WikiText2 PPL を NF4 比 -0.18、INT5 比 -0.03 と僅差改善するが、ハードウェア native サポートがなく実用性は要検討。bitsandbytes v0.46 に試験実装が含まれる。

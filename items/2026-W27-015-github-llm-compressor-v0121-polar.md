@@ -14,9 +14,13 @@ methods: [GPTQ, AWQ, NVFP4, SpinQuant, PolarQuant]
 tech: [moe-quant, ptq, weight-only, activation-quant, kv-cache-quant, rotation, polar-rotation]
 priority: normal
 sources: [github]
-status: new
+status: needs-correction
 related: [2026-W26-005, 2026-W27-001]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> llm-compressor 0.12.1 タグは未確認(0.12.0は実在)。PolarQuant統合の記述は要検証。
+
 
 ## 日本語要約
 llm-compressor v0.12.1。W26 の v0.12.0（Transformers v5 移行）の安定化版に加え、**PolarQuant の試験統合**（W27-001 PolarQuant-KV の重み版を内包）と Qwen3.6 公式レシピ対応が主な追加。SpinQuant 経路で活性 hadamard を `--rotation polar` で極座標版に切り替え可能。Gemma 4 MoE の calibration speedup 30%。

@@ -12,13 +12,17 @@ methods: [NVFP4]
 tech: [low-bit-fp4, weight-only, activation-quant, moe-quant]
 priority: high
 sources: [hf-models]
-status: new
+status: needs-correction
 model_ids:
   - "nvidia/Gemma-4-31B-NVFP4"
   - "nvidia/Gemma-4-12B-NVFP4"
   - "nvidia/Gemma-4-26B-A4B-NVFP4"
 related: [2026-W22-012, 2026-W25-018]
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> モデルURLは nvidia/Gemma-4-31B-IT-NVFP4 が正(現状は '-IT-' 欠落)。モデル自体は実在。
+
 
 ## 日本語要約
 NVIDIA 公式の Gemma 4 ファミリー NVFP4 量子化が登場。31B（dense）/ 12B（dense）/ 26B-A4B（MoE）の 3 種を同日リリース。W22-W26 で focus 該当ゼロだった Gemma 4 が NVIDIA 公式 NVFP4 として揃った形。MMLU 劣化 -1.1pt（31B）、-0.8pt（12B）、-1.6pt（26B-A4B）。Blackwell B200 で decode 2.8x（BF16比）。

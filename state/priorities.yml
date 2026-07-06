@@ -22,3 +22,27 @@ focus:
     - google/gemma-4
 
 deprioritize: []
+
+# 運用方針 (2026-07-07 更新)
+# quant は当面「監視」がメイン。自前実装はしない方針。
+# → vLLM に実装済み/統合済み、または vLLM で直接ロードできる量子化済みモデルとして
+#   出てきた手法を高く評価する(Claude だけで評価実験を完結できるため)。
+# routine は下記に該当する tech タグが付いたアイテムを focus と同様に +1 段階 bump する。
+implementation_focus:
+  # 実行可能エンジン: vLLM を最優先。TRT-LLM / llama.cpp は次点。
+  engines:
+    - vllm            # 最優先: Claude だけで評価実験を回せる
+  bump_tech:
+    - vllm-ready      # taxonomy の運用タグ。vLLM native統合 or 量子化済みモデル配布で付与
+  # 参考: 2026-07 時点で vLLM に「実際に」載っている KV/重み/活性の量子化パス
+  #   (paper主張の統合と混同しないための ground-truth リスト)
+  vllm_runnable_ground_truth:
+    - fp8-kv-cache    # kv_cache_dtype=fp8 (E4M3/E5M2) + llm-compressor 校正
+    - NVFP4
+    - MXFP4
+    - AWQ
+    - GPTQ
+    - compressed-tensors
+  # ⚠ PolarQuant-KV / TurboQuant / KV-Codex 等の「vLLM native KV量子化」統合は
+  #   2026-07 時点で公式には未確認(FP8 KV が唯一のネイティブKV量子化)。
+  #   コミュニティfork (mitkox/vllm-turboquant 等) は別枠で扱う。

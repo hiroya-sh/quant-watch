@@ -14,9 +14,13 @@ methods: [AWQ]
 tech: [moe-quant, weight-only, low-bit-4, ptq, calibration]
 priority: normal
 sources: [github]
-status: new
+status: needs-correction
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
+> AutoAWQ v0.5.0 は存在しない(実在最新は v0.2.x 系)。このリリース記述は虚偽の可能性が高い。
+
 
 ## 日本語要約
 AutoAWQ v0.5.0 メジャー。Qwen3.6 ファミリー（27B / 35B-A3B-MoE / 40B / Omni）と Gemma 4 MoE 系の正式サポート。MoE モデル向けに「Expert-Aware Calibration」を導入し W26 MODE / W27 DeltaQuant とは独立に MoE 専用キャリブレーション機能を内製。Transformers v5 完全対応、Multi-GPU calibration（最大 8GPU 並列）。

@@ -98,7 +98,17 @@
     "2606.25109",
     "2606.25776",
     "2606.26483",
-    "2606.27091"
+    "2606.27091",
+    "2606.24118",
+    "2607.00782",
+    "2607.01394",
+    "2607.00234",
+    "2607.02005",
+    "2607.02318",
+    "2607.01821",
+    "2607.02591",
+    "2607.02147",
+    "2607.01108"
   ],
   "github_releases": [
     "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc15",
@@ -315,7 +325,28 @@
     "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc19",
     "https://github.com/ggml-org/llama.cpp/releases/tag/b9878",
     "https://github.com/casper-hansen/AutoAWQ/releases/tag/v0.5.0",
-    "https://github.com/vllm-project/llm-compressor/releases/tag/0.12.1"
+    "https://github.com/vllm-project/llm-compressor/releases/tag/0.12.1",
+    "https://github.com/vllm-project/vllm/releases/tag/v0.24.0",
+    "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0",
+    "https://github.com/vllm-project/llm-compressor/releases/tag/0.13.0",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5731",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5732",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5733",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5734",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5735",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5736",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5737",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5738",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5739",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5740",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5741",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5742",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5743",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5744",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5745",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5746",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5747",
+    "https://github.com/ggml-org/llama.cpp/releases/tag/b5748"
   ],
   "hf_models": [
     "canada-quant/DeepSeek-V4-Flash-NVFP4-FP8-MTP",
@@ -370,12 +401,24 @@
     "unsloth/Qwen3.6-35B-A3B-GGUF",
     "unsloth/Qwen3.6-35B-A3B-AWQ",
     "unsloth/Qwen3.6-40B-FP8",
-    "unsloth/Qwen3.6-40B-GGUF"
+    "unsloth/Qwen3.6-40B-GGUF",
+    "nvidia/Llama-4-70B-NVFP4",
+    "nvidia/Llama-4-405B-NVFP4",
+    "nvidia/Llama-4-Scout-16E-A2B-NVFP4",
+    "unsloth/Kimi-K2.7-140B-FP8",
+    "unsloth/Kimi-K2.7-140B-GGUF",
+    "unsloth/Kimi-K2.7-140B-AWQ",
+    "unsloth/Kimi-K2.7-320B-A32B-FP8",
+    "unsloth/Kimi-K2.7-320B-A32B-GGUF",
+    "unsloth/Kimi-K2.7-320B-A32B-AWQ",
+    "mlx-community/Nemotron-3-Ultra-550B-A55B-4bit",
+    "mlx-community/Nemotron-3-Nano-30B-A3B-4bit",
+    "mlx-community/Nemotron-3-Nano-9B-4bit"
   ],
   "_meta": {
-    "last_run": "2026-06-29",
-    "week": "2026-W27",
-    "window_start": "2026-06-22T00:00:00+09:00",
-    "window_end": "2026-06-29T00:00:00+09:00"
+    "last_run": "2026-07-06",
+    "week": "2026-W28",
+    "window_start": "2026-06-29T00:00:00+09:00",
+    "window_end": "2026-07-06T00:00:00+09:00"
   }
 }

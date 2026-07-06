@@ -14,9 +14,14 @@ methods: [QuaRot, SpinQuant, SmoothQuant]
 tech: [activation-quant, weight-only, rotation, low-bit-4, ptq, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: []
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.24517 は数値解析の別論文(induction heating)。SpectraQuantではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 Hadamard 系の時間領域回転に代わり、FFT/DCT で activation を「周波数領域」に写してから量子化する PTQ 手法。LLM activation のアウトライアが低周波数成分に集中することを実証し、周波数ビン別に異なるビット幅を割り当てることで W4A4 でも WikiText2 PPL +0.32（QuaRot 比 -0.18）を達成。FFT は固定演算で訓練不要、Walsh-Hadamard 系と相補的に組み合わせ可能。

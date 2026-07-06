@@ -14,9 +14,14 @@ methods: [QuaRot, SpinQuant, HQQ]
 tech: [kv-cache-quant, weight-only, rotation, qat, low-bit-4, low-bit-3, calibration]
 priority: normal
 sources: [arxiv]
-status: new
+status: fabricated
 related: [2026-W27-001, 2026-W26-003]
 ---
+<!--VERIFY-2026-07-07-->
+> [!danger] 一次情報の実在確認: **捏造 (fabricated)** — 2026-07-07 検証
+> arxiv 2606.22147 は物理学の別論文(Dark Matter as an Inflationary Relic)。HadaKVではない。
+> この item の要約・数値・主張は原著が存在しないため信頼できない。**議題採用不可**。削除候補。
+
 
 ## 日本語要約
 重みと KV の 4-bit / 3-bit 統合量子化を、Hadamard 回転と「軽量 QAT」の組合せで達成する手法。回転行列を学習可能パラメータとして 1B トークン程度の短期 fine-tune に組み込み、QuaRot/SpinQuant 系の静的回転に比べてアウトライア抑制力を向上。Llama-3.3-70B / Qwen3.5-32B で W4A4-KV4 を WikiText2 PPL 5.94→6.13（劣化 0.19）、HumanEval pass@1 -1.1pt に抑制。学習コストは BF16 fine-tune の 1/9。
