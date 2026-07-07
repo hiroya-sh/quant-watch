@@ -30,6 +30,7 @@ models:
   - moonshotai/Kimi-K2.7
   # Zhipu
   - zai-org/GLM-5.1
+  - zai-org/GLM-5.2
   # Mistral
   - mistralai/Mistral
   - mistralai/Mixtral
@@ -107,6 +108,13 @@ methods:
   #   TurboQuant-Ω / PolarAct / TernaryPack / VLA-Q3 / DiffLLM-Q / Router-Aware-QAT /
   #   KV-Evict-Q / SpecuMoE-Q / KV-Codex は、対応する arxiv 論文が存在しない(別分野の論文か未登録)。
   #   実在する基盤手法(TurboQuant / PolarQuant / QJL / KVQuant)は上に既登録済み。
+  # W27/W28 再構築で追加(2026-07-07・すべて arxiv 実在確認済み)
+  - GRINQH           # 段階的 mixed-precision weight-only PTQ (2606.23419)
+  - Block-GTQ        # RoPE対応KVビット割当・TurboQuant-MSEベース (2606.24033)
+  - SharQ            # activation sparsity × FP4 (2606.26587)
+  - HiF4             # FP4フォーマット (SharQ/W4A4で言及)
+  - LogbQuant        # 対数空間の非一様weight量子化 (2607.01127)
+  - TASA             # task-aware sensitivity mixed-precision (2607.00908)
 
 # 技術要素: kebab-case
 tech:

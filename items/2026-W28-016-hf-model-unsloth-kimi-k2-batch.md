@@ -1,41 +1,28 @@
 ---
 id: "2026-W28-016"
 type: hf-model
-title: "unsloth/Kimi-K2.7-{140B, 320B-A32B}-{FP8, GGUF, AWQ}"
-url: "https://huggingface.co/unsloth/Kimi-K2.7-140B-GGUF"
-discovered: "2026-07-06"
+title: "unsloth/Kimi-K2.7-Code-GGUF"
+url: "https://huggingface.co/unsloth/Kimi-K2.7-Code-GGUF"
+discovered: "2026-07-07"
 published: "2026-07-04"
-base_model: "moonshotai/Kimi-K2.7-{140B, 320B-A32B}"
+base_model: "moonshotai/Kimi-K2.7"
 models: [moonshotai/Kimi-K2.7]
 architectures: [transformer, moe]
-methods: [AWQ, GGUF]
-tech: [weight-only, moe-quant, low-bit-4, low-bit-fp8]
+methods: [GGUF]
+tech: [weight-only, moe-quant, low-bit-4, llamacpp-ready]
 priority: normal
 sources: [hf-models]
-status: needs-correction
+status: verified-minimal
+verified: "2026-07-07 unsloth/Kimi-K2.7-Code-GGUF の実在確認。旧URL(Kimi-K2.7-140B-GGUF)は404。K2.7は1T級MoE(32B active)で'140B dense'は誤り。ベンチ表・DL数は捏造のため削除。"
 related: [2026-W27-017]
 ---
-<!--VERIFY-2026-07-07-->
-> [!warning] 一次情報の実在確認: **要修正 (needs-correction)** — 2026-07-07 検証
-> unsloth/Kimi-K2.7-140B-GGUF は404。実在は unsloth/Kimi-K2.7-Code-GGUF(K2.7は1T MoE, 140B denseではない)。
-
 
 ## 日本語要約
-unsloth が Kimi K2.7 リリース（Moonshot AI が W27 末に発表した後継モデル）を受けて即座に 6 モデル一斉量子化リリース。dense 140B と MoE 320B-A32B の 2 変種に対して、それぞれ FP8 / GGUF Q4_K_M / AWQ INT4 の 3 種類を提供。Moonshot AI 公式は FP8 のみのため、AWQ / GGUF が unsloth 提供の初動となる。llama.cpp W28 builds (W28-013) の Kimi-K2 router 整合バグ修正と同期リリース。
+unsloth による Kimi K2.7 の GGUF 量子化。**`unsloth/Kimi-K2.7-Code-GGUF` の実在確認済み**。旧版の「140B/320B-A32B の FP8/GGUF/AWQ 6モデル」「精度表」「ダウンロード数」は裏取りできず削除。Kimi K2.7 は 1T 級 MoE（約32B active）で「140B dense」という記述は誤り。
 
-## 量子化仕様
-- **Kimi-K2.7-140B-FP8**: dense 140B、W8A8 FP8
-- **Kimi-K2.7-140B-GGUF**: Q3_K_XL / Q4_K_M / Q5_K_M / Q6_K の 4 quant
-- **Kimi-K2.7-140B-AWQ**: W4A16 AWQ INT4、group-size 128
-- **Kimi-K2.7-320B-A32B-{FP8, GGUF, AWQ}**: 同上、MoE 版 (32 experts, top-4 active = A32B)
-
-## 精度報告
-- **Kimi-K2.7-140B-AWQ**: MMLU 80.2 (FP16 81.1, -0.9pt) / MATH 84.5 (FP16 85.3, -0.8pt)
-- **Kimi-K2.7-320B-A32B-AWQ**: MMLU 84.7 (FP16 85.8, -1.1pt)、MoE 特有の劣化幅
-
-## ダウンロード/利用状況
-- 48 時間で全 6 モデル合計 downloads 32,000+
-- Kimi-K2.7-140B-GGUF が M4 Ultra 単機で decode 可能な最大モデルとして話題
+## 確認できた事実
+- `unsloth/Kimi-K2.7-Code-GGUF` が実在（GGUF, ローカル推論向け）
+- moe-quant(focus tech) に間接ヒット
 
 ## 注目度コメント
-moe-quant が focus tech（間接、Kimi-K2.7-320B-A32B の MoE 経由）。Moonshot AI 新規モデルへの追従速度が W22 (Kimi K2.5) → W25 (K2.6) → W28 (K2.7) と3週サイクルで安定。unsloth の対応速度と品質が weekly cadence で見ると安定した供給源となっている点で標準的な normal priority。
+Kimi 系の追従。focus 直撃なし。詳細は model card 参照。
