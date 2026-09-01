@@ -52,6 +52,13 @@ Filtering:
 1. **タグ付け**: `taxonomy.yml` の models / architectures / methods / tech に対してマッチング
    - models: substring match(`google/gemma-4` は `google/gemma-4-26b-a4b` にもヒット)
    - architectures / methods / tech: exact match
+   - ⚠ **GitHub release は本文を全文スキャンする(必須・2026-08 追加)**: release 1件には数十の変更が
+     束ねられるため、タイトルや概要だけでタグ付けすると focus を取りこぼす。`priorities.yml` の focus に
+     ある method / model 名が **release body(changelog の各行・PR タイトルを含む)のどこかに出現**したら、
+     そのアイテムの `methods` / `models` タグに必ず追加し、Stage 3 の「今週なしカテゴリ」からは除外する。
+     該当した具体的な変更行(PR 番号込み)を item の「量子化関連の変更点」に明記すること。
+     (背景: W34 で vLLM v0.27.0 に `KV quant mode for TurboQuant (#50533)` が含まれていたのに
+     weekly が「methods TurboQuant: 該当なし」と誤報告した。再発防止。)
 2. **Priority bumping** by `priorities.yml`:
    - `focus` の項目にマッチ → priority を +1段階(normal→high, watching→normal)
    - `deprioritize` にマッチ → -1段階下げる
@@ -90,6 +97,8 @@ Filtering:
 2. 今週の概況(件数 / 先週比 / 頻出キーワード / 動き)
 3. カテゴリ別新着(by architecture / by model / by method の上位)
 4. 今週なしカテゴリ(`priorities.yml` の focus 項目で該当ゼロのもの。「無いという報告」を明示)
+   - ⚠ 「該当なし」と書く前に、**その週の GitHub release アイテムの body 全文**を focus 名で再検索して
+     ゼロであることを確認する(Stage 2 の全文スキャン規則と対になる最終チェック)。
 5. Overflow(N > 30 の時のみ)
 6. 新規タグ候補(`_uncategorized` 含む、taxonomy.yml に未登録のタグを列挙)
 
